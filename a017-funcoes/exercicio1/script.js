@@ -16,9 +16,7 @@
 
 // C
 
-const imprimeNome = nome => {
-  return `Olá, ${nome}`
-}
+const imprimeNome = nome => `Olá, ${nome}`
 
 console.log(imprimeNome('Edson'))
 
