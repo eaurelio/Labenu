@@ -2,3 +2,76 @@
     margin: 0;
     padding: 0;
 }
+
+button {
+    width: 100px;
+    height: 20px;
+    border: none;
+    font-weight: bold;
+}
+
+header, footer {
+    display: flex;
+    height: 10vh;
+    background-color: antiquewhite;
+    border: 1px solid brown;
+}
+
+header {
+    justify-content: space-between; /**/
+    align-items: center;
+    padding: 0 15px;
+    height: 10vh;
+}
+
+main {
+    min-height: 80vh;
+    background-color: beige;
+}
+
+footer {
+    align-items: center;
+    justify-content: center;
+}
+
+#content {
+    display: flex;
+}
+
+#nav1, #nav2 {
+    width: 30vh;
+    padding: 10px;
+    line-height: 1.5rem;
+}
+
+#main-content {
+    margin-top: 12px;
+}
+
+ul li {
+    list-style: none;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: brown;
+    text-decoration: underline;
+}
+
+#img-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+figure {
+    font-size: 0.8em;
+    width: 160px;
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+}
