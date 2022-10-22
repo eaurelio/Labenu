@@ -21,10 +21,39 @@ export const GaragemContainer = styled.main`
   gap: 20px;
 `
 
+
+
 export const Estacionamento = styled.section`
+
+@media only screen and (max-width: 600px) {
   display: grid;
   grid-gap: 20px;
-  grid-template-columns: 
-  [left] 1fr  
-  [right] 1fr
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr;
+} 
+
+@media only screen and (min-width: 600px) {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr;
+} 
+
+@media only screen and (min-width: 992px) {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+} 
+
+@media only screen and (min-width: 1200px) {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+
+
+  
 `
