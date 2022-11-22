@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {Garagem} from "./componentes/garagem/Garagem";
 import GlobalStyle from "./GlobalStyle/GlobalStyle";
 import Header from "./componentes/Header/Header";
@@ -7,10 +7,11 @@ import Footer from "./componentes/Footer/Footer";
 
 
 export default function App() {
-  const nome = "Labenu";
+  const nome = "Edsu";
+  const [name, setName] = useState(0);
 
   function apresentaGaragem() {
-    alert(`Boas vindas à garagem de ${nome}`);
+    alert(`Esse botão foi clicado ${0} vezes`);
   }
 
   return (
