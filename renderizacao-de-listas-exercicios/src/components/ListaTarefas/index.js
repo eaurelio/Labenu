@@ -12,7 +12,7 @@ import {
 import bin from "../../assets/bin.png";
 
 export function ListaTarefas() {
-  const [lista, setLista] = useState(["Fazer exercícios", "Estudar React", 'Odiar React', 'Apresentar exercício']);
+  const [lista, setLista] = useState(["Fazer exercícios", "Estudar React", 'Apresentar exercício']);
   const [novaTarefa, setNovaTarefa] = useState("");
   const [tarefaConcluida, setTarefaConcluida] = useState([])
 
@@ -20,22 +20,21 @@ export function ListaTarefas() {
     setNovaTarefa(event.target.value);
   };
 
-  const adicionaTarefa = (e) => {
+  const adicionaTarefa = () => {
       const novaLista = [...lista, novaTarefa];
       setLista(novaLista);
       setNovaTarefa("");
   };
 
   const adicionaTarefaEnter = (e) => {
-    // console.log(e.keyCode)
     if(e.keyCode === 13) {
-      adicionaTarefa(e)
+      adicionaTarefa()
     }
   };
 
   const removeTarefa = (tarefa) => {
     const listaFiltrada = lista.filter((item) => item !== tarefa);
-      setLista(listaFiltrada);
+    setLista(listaFiltrada);
   };
 
   const concluiTarefa = (tarefa) => {
@@ -60,6 +59,7 @@ export function ListaTarefas() {
         <AddTaskButton onClick={adicionaTarefa}>Adicionar</AddTaskButton>
       </InputContainer>
       <ListaContainer>
+        <h4>Tarefas pendentes</h4>
         <ul>
           {lista.map((tarefa, index) => {
             return (
@@ -73,9 +73,11 @@ export function ListaTarefas() {
           })}
         </ul>
       </ListaContainer>
+
       <LinhaHorizontal/>
 
       <ListaContainer>
+        <h4>Tarefas Concluídas</h4>
         <ul>
           {tarefaConcluida.map((tarefa, index) => {
             return (
@@ -86,8 +88,6 @@ export function ListaTarefas() {
           })}
         </ul>
       </ListaContainer>
-
-
     </ListaTarefasContainer>
   );
 }
