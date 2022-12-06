@@ -10,6 +10,11 @@ export const ListaTarefasContainer = styled.div`
   box-shadow: -2px 3px 30px -7px rgba(0, 0, 0, 0.75);
   border-bottom-right-radius: 15px;
   border-bottom-left-radius: 15px;
+  h4 {
+    text-align: center;
+    margin: 20px;
+    color: #4e5abc;
+  }
 `;
 
 export const InputContainer = styled.div`
