@@ -23,34 +23,44 @@ function App() {
   const [inputValue, setInputValue] = useState("");
   const [filtro, setFiltro] = useState("")
 
-  // useEffect() => {
-  //   () => {
+  useEffect(()=> {
+    tarefas.length > 0 && localStorage.setItem('task', JSON.stringify(tarefas))
+  }, [tarefas])
 
-  //   },
-  //   []
-  // };
+  useEffect(()=> {
+    setTarefa(JSON.parse(localStorage.getItem('task')))
+  }, [])
 
-  // useEffect() => {
-  //   () => {
-
-  //   },
-  //   []
-  // };
 
   const onChangeInput = (event) => {
-    console.log("aaa");
+    setInputValue(event.target.value)
   }
 
   const criaTarefa = () => {
-    console.log("aaa");
+    const novaTarefa = {
+      id: Date.now(),
+      texto: inputValue, 
+      completa: false
+    }
+    setTarefa([...tarefas, novaTarefa])
+    setInputValue('')
   }
 
   const selectTarefa = (id) => {
-    console.log("aaa");
+    setTarefa(tarefas.map(tarefa => tarefa.id == id ? {...tarefa, completa: !tarefa.completa} : tarefa))
+    // const arr = tarefas.map(tarefa => {
+    //   if(id === tarefa.id) {
+    //     const item = {...tarefa, completa: !tarefa.completa}
+    //     return item
+    //   } else {
+    //     return tarefa
+    //   }
+    // })
+    // setTarefa([...arr])
   }
 
   const onChangeFilter = (event) => {
-    console.log("aaa");
+    setFiltro(event.target.value)
   }
 
 
@@ -86,7 +96,7 @@ function App() {
       <TarefaList>
         {listaFiltrada.map(tarefa => {
           return (
-            <Tarefa
+            <Tarefa key={tarefa.id}
               completa={tarefa.completa}
               onClick={() => selectTarefa(tarefa.id)}
             >
