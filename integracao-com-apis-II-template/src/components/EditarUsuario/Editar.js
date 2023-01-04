@@ -11,49 +11,83 @@ export const EditarUsuario = (props) => {
   const [editar, setEditar] = useState(false)
 
 
-  const getDadosUsuario = () => {
-    axios
-      .get(
-        `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${props.id}`,
-        {
-          headers: {
-            Authorization: "ana-sammi-barbosa",
-          },
+  // const getDadosUsuario = () => {
+  //   axios
+  //     .get(
+  //       `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${props.id}`,
+  //       {
+  //         headers: {
+  //           Authorization: "ana-sammi-barbosa",
+  //         },
+  //       }
+  //     )
+  //     .then((res) => {
+  //       setUsuario(res.data);
+  //       setEmail(res.data.email);
+  //       setName(res.data.name);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err.response);
+  //     });
+  // };
+
+  const getDadosUsuario = async () => {
+    try {
+      const dadosUsuario = await axios
+      .get(`https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${props.id}`, {
+        headers: {
+          Authorization: "ana-sammi-barbosa"
         }
-      )
-      .then((res) => {
-        setUsuario(res.data);
-        setEmail(res.data.email);
-        setName(res.data.name);
       })
-      .catch((err) => {
-        console.log(err.response);
-      });
-  };
+      setUsuario(dadosUsuario.data)
+      setEmail(dadosUsuario.data.email)
+      setName(dadosUsuario.data.name)
+    } catch(err){
+      console.log(err.data)
+    }
+  }
 
   useEffect(() => {
     getDadosUsuario();
   }, []);
 
-  const editaUsuario = () => {
-    const body = {
-        name,
-        email
-      };
-      axios
-        .put(
-          `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${usuario.id}`,
-          body,
-          {
-            headers: {
-              Authorization: "ana-sammi-barbosa"
-            }
+  // const editaUsuario = () => {
+  //   const body = {
+  //       name,
+  //       email
+  //     };
+  //     axios
+  //       .put(
+  //         `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${usuario.id}`,
+  //         body,
+  //         {
+  //           headers: {
+  //             Authorization: "ana-sammi-barbosa"
+  //           }
+  //         }
+  //       )
+  //       .then(() => {
+  //         getDadosUsuario();
+  //         setEditar(!editar)
+  //       });
+  // }
+
+  const editaUsuario = async () => {
+    try {
+      const body = {
+        name, email
+      }
+      const editar = await axios
+        .put( `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${usuario.id}`, body, {
+          headers: {
+            Authorization: "ana-sammi-barbosa"
           }
-        )
-        .then(() => {
-          getDadosUsuario();
-          setEditar(!editar)
-        });
+        })
+        getDadosUsuario();
+        setEditar(!editar)
+    } catch(err) {
+      console.log(err.data)
+    }
   }
 
   const deletarUsuario = () => {

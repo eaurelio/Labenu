@@ -21,25 +21,52 @@ function App() {
     getUsuarios();
   }, []);
 
-  const getUsuarios = () => {
-    axios
-      .get(
-        "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users",
-        {
-          headers: {
-            Authorization: "ana-sammi-barbosa",
-          },
-        }
-      )
-      .then((res) => {
-        setUsuarios(res.data);
-      })
-      .catch((error) => {
-        console.log(error.response);
-      });
-  };
+  // const getUsuarios = () => {
+  //   axios
+  //     .get(
+  //       "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users",
+  //       {
+  //         headers: {
+  //           Authorization: "ana-sammi-barbosa",
+  //         },
+  //       }
+  //     )
+  //     .then((res) => {
+  //       setUsuarios(res.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error.response);
+  //     });
+  // };
 
-  const pesquisaUsuario = (pesquisa) => {
+  const getUsuarios = async () => {
+    try {
+      const response = await axios
+      .get("https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users", {
+        headers: {
+          Authorization: "ana-sammi-barbosa"
+        }
+      })
+
+      setUsuarios(response.data)
+    }
+    catch (err) {
+      console.log(err.data)
+    }
+  }
+
+  const pesquisaUsuario = async (dado) => {
+    try {
+      const pesquisa = await axios  
+        .get(`https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/search?name=${dado.nome}&email=${dado.email}`, {
+          headers: {
+            Authorization: "ana-sammi-barbosa"
+          }
+        })
+        setUsuarios(pesquisa.data)
+    } catch (err) {
+      console.log(err.data)
+    }
    
   };
 
@@ -57,6 +84,8 @@ function App() {
       email,
     };
     setPesquisa(novaPesquisa);
+
+    pesquisaUsuario(novaPesquisa)
    
     setNome("")
     setEmail("")
